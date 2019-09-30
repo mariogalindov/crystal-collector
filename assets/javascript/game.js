@@ -5,11 +5,11 @@
 // Check if the user passed the score value, push one to the losses and generate new values to the gems 
 
 // This will generate the random numbers for the score to reach and the 4 gems 
-var ranScore = Math.floor(Math.random() * (120 - 19 + 1)) + 19;
-var ranGem =   Math.floor(Math.random() * 12) + 1;
-var ranGem2 =   Math.floor(Math.random() * 12) + 1;
-var ranGem3 =   Math.floor(Math.random() * 12) + 1;
-var ranGem4 =   Math.floor(Math.random() * 12) + 1;
+var targetScore 
+var ranGem 
+var ranGem2 
+var ranGem3 
+var ranGem4 
 
 // Variables for the crystals
 var blueGem = 0;
@@ -23,19 +23,17 @@ var currentScore = 0;
 var winCount = 0;
 var lossCount = 0;
 
-
-
 //This function gets javasript running once the html is ready? 
 $(document).ready(function() {
 
     function start() {
         //This will restart the current score, and generate random values for the target score and the values for the gems
         currentScore = 0;
-        targetScore = ranScore;
-        blueGem = ranGem;
-        greenGem = ranGem2;
-        purpleGem = ranGem3;
-        redGem = ranGem4;
+        targetScore = Math.floor(Math.random() * (120 - 19 + 1)) + 19;
+        blueGem =  Math.floor(Math.random() * 12) + 1;
+        greenGem = Math.floor(Math.random() * 12) + 1;
+        purpleGem = Math.floor(Math.random() * 12) + 1;
+        redGem = Math.floor(Math.random() * 12) + 1;
 
 
         //Insert the values of the target and current score
@@ -81,33 +79,46 @@ $(document).ready(function() {
         console.log("click actual score " + currentScore)
         console.log("Click id: " + event.currentTarget.id)
 
-        
+    }
 
+    function roundFinisher() {
+        if (currentScore === targetScore) {
+            alert("Congrats! You won");
+            winCount ++;
+            $("#winText").html(winCount);
+            start();
+
+        } else if (currentScore > targetScore) {
+            alert("Damn, you lost!");
+            lossCount++;
+            $("#lossText").html(lossCount);
+            start();
+        }
     }
 
 
     start();
     
     $("#blueImg").click( function(event) {
-        alert("I'm the blue crystal");
         addValues();
         // console.log(event)
         // console.log(event.currentTarget.id)
+        roundFinisher();
     });
 
     $("#greenImg").click( function() {
-        alert("I'm the green crsytal");
-        addValues()
+        addValues();
+        roundFinisher();
     });
 
     $("#purpleImg").click( function() {
-        alert("I'm the purple crystal");
-        addValues()
+        addValues();
+        roundFinisher();
     });
 
     $("#redImg").click( function() {
-        alert("I'm the red crystal")
-        addValues()
+        addValues();
+        roundFinisher();
     })
 
 });
