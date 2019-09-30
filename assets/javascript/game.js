@@ -1,6 +1,6 @@
 // Generate random number to reach (19 - 120) check
 // Generate random number for each of the crystalls (1 - 12) check
-// Receive the click event and sum every click associating the values from the gems
+// Receive the click event and sum every click associating the values from the gems check
 // Check if the user equals the scores and push a win if it does and generate new values to the gems
 // Check if the user passed the score value, push one to the losses and generate new values to the gems 
 
@@ -52,16 +52,36 @@ $(document).ready(function() {
     function addValues(clickId) {
 
         if (event.currentTarget.id === "blueImg"){
-            console.log("I'm the blue crystal and my value now is " + blueGem;
-        } else if (event.currentTarget.id === "greenImg"){
-            console.log("I'm the green crystal and my value now is " + greenGem);
-        } else if (event.currentTarget.id === "purpleImg"){
-            console.log("I'm the purple crystal and my value now is " + purpleGem);
-        } else {
-            console.log("I'm the red crystal and my value now is " + redGem);
-        }
+            console.log(currentScore);
+            console.log("I'm the blue crystal and my value now is " + blueGem);
+            currentScore = currentScore + blueGem;
+            console.log("Now the current score is " + currentScore);
 
+        } else if (event.currentTarget.id === "greenImg"){
+            console.log(currentScore);
+            console.log("I'm the green crystal and my value now is " + greenGem);
+            currentScore = currentScore + greenGem;
+            console.log("Now the current score is " + currentScore);
+
+        } else if (event.currentTarget.id === "purpleImg"){
+            console.log(currentScore);
+            console.log("I'm the purple crystal and my value now is " + purpleGem);
+            currentScore = currentScore + purpleGem;
+            console.log("Now the current score is " + currentScore);
+
+        } else {
+            console.log(currentScore);
+            console.log("I'm the red crystal and my value now is " + redGem);
+            currentScore = currentScore + redGem;
+            console.log("Now the current score is " + currentScore);
+
+        }
+        $("#currentScoreText").html(currentScore)
+
+        console.log("click actual score " + currentScore)
         console.log("Click id: " + event.currentTarget.id)
+
+        
 
     }
 
